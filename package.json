@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-01-components",
+  "name": "techstack-test-rent",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Aleksayshn.github.io/goit-react-hw-01-components/",
+  "homepage": "https://Aleksayshn.github.io/techstack-test-rent/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
