@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
-export const StyledInput = styled.div`
+export const StyledTextarea = styled.div`
   display: block;
   position: relative;
   label {
     display: block;
     margin-bottom: 10px;
   }
-  input {
+  
+  textarea {
+    resize: none;
     display: block;
     height: 25px;
     padding: 5px;
@@ -15,13 +17,16 @@ export const StyledInput = styled.div`
     border: 1px solid #c7bea2;
     outline: none;
     &:focus {
-      border: 1px solid #9a9483;
+     outline: none;
+    }
+    &:active {
+     outline: none;
     }
   }
   div {
     font-size: 12px;
     font-weight: 700;
-  color: #74777c;
+    color: #74777c;
     position: absolute;
   }
 `;

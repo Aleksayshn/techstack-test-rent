@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { StyledFilterDiv } from './StyledFilter';
-import { Input } from 'components/Input/Input';
 import { DropDown } from 'components/DropDown/DropDown';
 
 const dropDownOptions = [
@@ -9,19 +8,12 @@ const dropDownOptions = [
   { value: 'desc', text: 'Price - highest to lowest' },
 ];
 
-export const Filter = ({ onChange, onSortChange, value, selectValue }) => {
+export const Filter = ({ onSortChange, selectValue }) => {
   return (
     <StyledFilterDiv>
-      <Input
-        label="Filter by rooms number"
-        onChange={onChange}
-        value={value}
-        type="number"
-        name="filter"
-      />
       <DropDown
         options={dropDownOptions}
-        label="Sort by"
+        label="Sort by:"
         onChange={onSortChange}
         value={selectValue}
       />

@@ -11,7 +11,7 @@ export const StyledDropDown = styled.div`
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #c7bea2;
+    background-color: #FFF;
     outline: none;
     border: 1px solid #c7bea2;
 

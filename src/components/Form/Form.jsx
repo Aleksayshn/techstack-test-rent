@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { StyledForm } from './StyledForm';
 import { Input } from 'components/Input/Input';
 import { Button } from 'components/Button/Button';
+import { Textarea } from 'components/Textarea/Textarea';
 
 import { useFormik } from 'formik';
 
@@ -50,49 +51,53 @@ export const Form = ({ onSubmit }) => {
   return (
     <StyledForm onSubmit={formik.handleSubmit}>
       <Input
-        label="Apartment name"
+        label="Name"
         onChange={formik.handleChange}
         value={formik.values.name}
         type="text"
         name="name"
+        placeholder="Ex. Flat in the city center"
         required
         onBlur={formik.handleBlur}
         isTouched={formik.touched.name}
         error={formik.errors.name}
       />
       <Input
-        label="Number of rooms"
+        label="Rooms"
         onChange={formik.handleChange}
         value={formik.values.rooms}
         type="number"
         name="rooms"
+        placeholder="1"
         required
         onBlur={formik.handleBlur}
         isTouched={formik.touched.rooms}
         error={formik.errors.rooms}
       />
       <Input
-        label="Price"
+        label="Rent Price"
         onChange={formik.handleChange}
         value={formik.values.price}
         type="number"
         name="price"
+        placeholder="99.00"
         required
         onBlur={formik.handleBlur}
         isTouched={formik.touched.price}
         error={formik.errors.price}
       />
-      <Input
+      <Textarea
         label="Description"
         onChange={formik.handleChange}
         value={formik.values.description}
         type="text"
         name="description"
+        placeholder="Describe"
         onBlur={formik.handleBlur}
         isTouched={formik.touched.description}
         error={formik.errors.description}
       />
-      <Button text="Add apartment" type="submit" />
+      <Button text="Submit rent" type="submit" />
     </StyledForm>
   );
 };

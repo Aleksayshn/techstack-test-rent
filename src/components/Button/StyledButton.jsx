@@ -1,17 +1,23 @@
 import styled from 'styled-components';
+import { getRandomRgbColor } from 'utils/getRandomColor';
+
 
 export const StyledButton = styled.button`
-  display: block;
-  padding: 10px;
+  display: inline-block;
+  padding: 4px 10px;
+  color: #FFF;
+  background-color: #48ab88;
+  border: 1px solid transparent;    
   border-radius: 5px;
-  border: 1px solid #9a9483;
-  background-color: #9a9483;
-  color: #e5dcc3;
+  letter-spacing: inherit;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
   cursor: pointer;
-  transition: ease-in 200ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);  
   :hover {
-    border: 1px solid #e5dcc3;
-    background-color: #e5dcc3;
-    color: #9a9483;
+    background-color: ${getRandomRgbColor};
   }
 `;
+

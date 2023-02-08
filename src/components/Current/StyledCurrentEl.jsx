@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-export const StyledLi = styled.li`
+export const StyledCurrentEl = styled.li`
   display: flex;
   justify-content: space-between;
-  gap: 10px;
   align-items: center;
   border: 1px solid #c3c6c9;
   margin: 10px 0;

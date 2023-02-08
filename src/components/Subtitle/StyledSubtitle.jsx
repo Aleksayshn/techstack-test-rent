@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledSubtitle = styled.h2`
-  font-size: 20px;
+margin-top:20px;
+font-size: 20px;
 `;
