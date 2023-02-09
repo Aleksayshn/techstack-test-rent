@@ -27,12 +27,5 @@ export const exampleApartments = [
     price: 800,
     description: "A charming one bedroom apartment with character and style."
   },
-  {
-    id: "5",
-    name: "Stylish 3BR",
-    rooms: 3,
-    price: 2000,
-    description: "A stylish three bedroom apartment with a contemporary design."
-  }
 ];
 

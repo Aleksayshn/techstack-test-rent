@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { StyledLi } from './StyledListElement';
+import { StyledLi, StyleBtnBox } from './StyledListElement';
 import { Button } from 'components/Button/Button';
 
 export const ListElement = ({ renter, deleter, apartment }) => {
@@ -7,11 +7,11 @@ export const ListElement = ({ renter, deleter, apartment }) => {
 
   return (
     <StyledLi>
-      <p>
-        {name} / {rooms} rooms / ${price} / {description}
-      </p>
-      <Button type="button" onClick={() => renter(apartment)} text="Rent" />
-      <Button type="button" onClick={() => deleter(id)} text="Delete" />
+      <p>{name} / {rooms} rooms / ${price} / {description}</p>
+      <StyleBtnBox>
+        <Button type="button" onClick={() => renter(apartment)} text="Rent" />
+        <Button type="button" onClick={() => deleter(id)} text="Delete" />
+      </StyleBtnBox>
     </StyledLi>
   );
 };

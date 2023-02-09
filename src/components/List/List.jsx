@@ -4,8 +4,6 @@ import { useEffect } from 'react';
 import { StyledHeading, StyledList } from './StyledList';
 
 export const List = ({ heading, items, filter, sort, deleter, renter, setCounter }) => {
-
-
   const filteredItems = items.filter(item => {
     return !filter || Number(item.rooms) === Number(filter);
   });

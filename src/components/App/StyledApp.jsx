@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledApp = styled.div`
-  border-radius: 10px;
-  max-width: 70%;
+  max-width: 80%;
   font-size: 16px;
-  color: #010101;
-  margin: 50px auto;
-  padding: 50px 20px;
-  h1 {
-    font-size: 28px;
-  }
+  color: #2f3030;
+  margin: 0px auto;
+  padding: 30px 15px;
 `;

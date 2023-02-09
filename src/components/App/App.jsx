@@ -16,22 +16,14 @@ const LS_KEY_FILTER = 'filter';
 const LS_KEY_SORT = 'sort';
 
 export const App = () => {
+
   const [apartments, setApartments] = useLocalStorage(
     LS_KEY,
     exampleApartments
   );
 
   const [currentRent, setCurrentRent] = useLocalStorage(
-    'currentRent',
-    [
-      {
-        id: '1',
-        name: 'Market square apartments 1',
-        rooms: 1,
-        price: 10,
-        description: 'some description',
-      },
-    ]
+    'currentRent', []
   );
 
   const [filter, setFilter] = useLocalStorage(LS_KEY_FILTER, '');
@@ -49,17 +41,18 @@ export const App = () => {
   };
 
   const handleCurrentRent = ({ name, rooms, price, description }) => {
-    setCurrentRent(prev => [
+    const alreadyAdded = currentRent.some(obj => obj.name === name);
+    alreadyAdded
+      ? Notify.failure(`Apartment ${name} has already rented`)
+      : setCurrentRent(prev => [
       ...prev,
-      { id: nanoid(), counter, name, rooms, price, description },
+      { name, rooms, price, description },
     ]);
   };
 
   const handleChange = e => setFilter(e.target.value);
 
-  const handleSort = e => {
-    setSort(e.target.value);
-  };
+  const handleSort = e => {setSort(e.target.value);};
 
   const deleteApartment = id => {
     setApartments(prev => prev.filter(apartment => apartment.id !== id));
@@ -72,10 +65,10 @@ export const App = () => {
   return (
     <StyledApp>
       <h1>Apartment Marketplace</h1>
-      <h2>🤑 Create a new rent</h2>
+      <h2>😍 Create a new rent</h2>
       <Form onSubmit={handleFormData} />
       <Current
-        heading="🤩 Your current rent"
+        heading="⏳ Your current rent"
         items={currentRent}
         canceler={deleteRent}
       />
@@ -86,7 +79,7 @@ export const App = () => {
         selectValue={sort}
       />
       <Subtitle
-        text="Available apartments"
+        text="🏡 Available apartments"
         counter={counter}
       />
       <List

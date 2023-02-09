@@ -5,6 +5,7 @@ export const StyledDropDown = styled.div`
   label {
     display: block;
     margin-bottom: 10px;
+
   }
   select {
     width: 100%;

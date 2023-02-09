@@ -3,19 +3,17 @@ import { CurrentEl } from './CurrentEl';
 import { StyledHeading, StyledCurrent } from './StyledCurrent';
 
 export const Current = ({ heading, items, canceler }) => {
-
-
     return (
         <>
-            <StyledHeading>{heading}</StyledHeading>
-            <StyledCurrent>
-                {items.map(apartment => (
-                    <CurrentEl
-                        canceler={canceler}
-                        apartment={apartment}
-                    />
-                ))}
-            </StyledCurrent>
+        <StyledHeading>{heading}</StyledHeading>
+        <StyledCurrent>
+            {items.map(apartment => (
+            <CurrentEl
+            canceler={canceler}
+            apartment={apartment}
+            />
+            ))}
+        </StyledCurrent>
         </>
     );
 };
@@ -32,5 +30,4 @@ Current.propTypes = {
         })
     ),
     canceler: PropTypes.func.isRequired,
-
 };
