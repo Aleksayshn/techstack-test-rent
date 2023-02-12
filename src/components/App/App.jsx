@@ -9,7 +9,7 @@ import { Filter } from '../Filter/Filter';
 import { Subtitle } from '../Subtitle/Subtitle';
 import { List } from '../List/List';
 
-export const API_URL = 'http://localhost:8080/api';
+export const API_URL = 'http://localhost:8080/api/apartments';
 
 export const App = () => {
   const [apartments, setApartments] = useState([]);
