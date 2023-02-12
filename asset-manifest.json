@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/techstack-test-rent/static/css/main.cc57be71.css",
+    "main.js": "/techstack-test-rent/static/js/main.7688927f.js",
+    "index.html": "/techstack-test-rent/index.html",
+    "main.cc57be71.css.map": "/techstack-test-rent/static/css/main.cc57be71.css.map",
+    "main.7688927f.js.map": "/techstack-test-rent/static/js/main.7688927f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cc57be71.css",
+    "static/js/main.7688927f.js"
+  ]
+}
