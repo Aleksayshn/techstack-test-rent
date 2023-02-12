@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const StyledForm = styled.form`
+export const StyledEditEl = styled.form`
   background-color: #dedcdc;
   display: flex;
-  gap: 20px;
+  gap: 10px;
   align-items: flex-end;
   flex-basis: 33%;
   justify-content: flex-start;

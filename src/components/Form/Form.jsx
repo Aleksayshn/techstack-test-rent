@@ -3,10 +3,9 @@ import { StyledForm } from './StyledForm';
 import { Input } from 'components/Input/Input';
 import { Button } from 'components/Button/Button';
 import { Textarea } from 'components/Textarea/Textarea';
-
 import { useFormik } from 'formik';
 
-const validate = values => {
+export const validate = values => {
   const errors = {};
   if (!values.name) {
     errors.name = 'Required';

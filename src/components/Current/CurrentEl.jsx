@@ -6,11 +6,11 @@ import { Button } from 'components/Button/Button';
 export const CurrentEl = ({ apartment, canceler }) => {
     const { name, rooms, price, description } = apartment;
 
-return (
-    <StyledCurrentEl>
-        <p>{name} / {rooms} rooms / ${price} / {description}</p>
-        <Button type="button" onClick={() => canceler(name)} text="Cancel" />
-    </StyledCurrentEl>
+    return (
+        <StyledCurrentEl>
+            <p>{name} / {rooms} rooms / ${price} / {description}</p>
+            <Button type="button" onClick={() => canceler(name)} text="Cancel" />
+        </StyledCurrentEl>
     );
 }
 

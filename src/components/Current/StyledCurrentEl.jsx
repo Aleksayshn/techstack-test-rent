@@ -12,5 +12,11 @@ export const StyledCurrentEl = styled.li`
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     transform: scale(1.01);
-  }
+  };
+  &:last-child {
+  margin-bottom: 0;
+  };
+  &:first-child {
+   margin-top: 0;
+  };
 `;
