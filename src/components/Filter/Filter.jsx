@@ -18,6 +18,7 @@ export const Filter = ({ onChange, onSortChange, value, selectValue }) => {
         value={value}
         type="number"
         name="filter"
+        placeholder="All"
       />
       <DropDown
         options={dropDownOptions}

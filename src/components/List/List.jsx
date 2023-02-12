@@ -3,7 +3,7 @@ import { ListElement } from '../ListElement/ListElement';
 import { useEffect } from 'react';
 import { StyledHeading, StyledList } from './StyledList';
 
-export const List = ({ heading, items, filter, sort, deleter, renter, setCounter }) => {
+export const List = ({ heading, items, filter, sort, deleter, renter, editor, setCounter }) => {
   const filteredItems = items.filter(item => {
     return !filter || Number(item.rooms) === Number(filter);
   });
@@ -30,6 +30,7 @@ export const List = ({ heading, items, filter, sort, deleter, renter, setCounter
         {sortedItems.map(apartment => (
           <ListElement
             renter={renter}
+            editor={editor}
             deleter={deleter}
             key={apartment.id}
             apartment={apartment}
@@ -41,10 +42,8 @@ export const List = ({ heading, items, filter, sort, deleter, renter, setCounter
 };
 
 List.propTypes = {
-  heading: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.exact({
-      id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       rooms: PropTypes.number.isRequired,
       price: PropTypes.number.isRequired,
@@ -53,7 +52,12 @@ List.propTypes = {
   ),
   filter: PropTypes.string.isRequired,
   deleter: PropTypes.func.isRequired,
+  editor: PropTypes.func.isRequired,
   renter: PropTypes.func.isRequired,
   sort: PropTypes.string,
   setCounter: PropTypes.func.isRequired,
+};
+
+List.defaultProps = {
+  sort: 'desc'
 };

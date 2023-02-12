@@ -1,76 +1,96 @@
-import { useState } from 'react';
-import { nanoid } from 'nanoid';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { StyledApp } from './StyledApp';
-import useLocalStorage from '../../hooks/useLocalStorage'
-import { exampleApartments } from 'data/apartments';
-
 import { Form } from '../Form/Form';
+import { Current } from '../Current/Current';
+import { Edit } from '../Edit/Edit';
 import { Filter } from '../Filter/Filter';
 import { Subtitle } from '../Subtitle/Subtitle';
 import { List } from '../List/List';
-import { Current } from '../Current/Current';
 
-const LS_KEY = 'apartments';
-const LS_KEY_FILTER = 'filter';
-const LS_KEY_SORT = 'sort';
+export const API_URL = 'http://localhost:8080/api';
 
 export const App = () => {
-
-  const [apartments, setApartments] = useLocalStorage(
-    LS_KEY,
-    exampleApartments
-  );
-
-  const [currentRent, setCurrentRent] = useLocalStorage(
-    'currentRent', []
-  );
-
-  const [filter, setFilter] = useLocalStorage(LS_KEY_FILTER, '');
-  const [sort, setSort] = useLocalStorage(LS_KEY_SORT, '');
+  const [apartments, setApartments] = useState([]);
+  const [currentRent, setCurrentRent] = useState([]);
+  const [editAparts, setEditAparts] = useState([]);
+  const [filter, setFilter] = useState('');
+  const [sort, setSort] = useState('');
   const [counter, setCounter] = useState(0);
 
-  const handleFormData = ({ name, rooms, price, description }) => {
+  useEffect(() => {
+    axios.get(API_URL)
+      .then(res => setApartments(res.data))
+      .catch(error => console.error(error));
+  }, []);
+
+  const onSubmitFormCreate = ({ name, rooms, price, description }) => {
     const alreadyAdded = apartments.some(obj => obj.name === name);
     alreadyAdded
       ? Notify.failure(`Apartment ${name} has already added`)
-      : setApartments(prev => [
-        ...prev,
-        { name, rooms, price, description, id: nanoid() },
-      ]);
+      : axios.post(API_URL, { name, rooms, price, description })
+        .then(res => setApartments(prev => [...prev, res.data]))
+        .catch(error => console.error(error));
   };
 
-  const handleCurrentRent = ({ name, rooms, price, description }) => {
+  const onSubmitFormEdit = (id, { name, rooms, price, description }) => {
+    axios.post(API_URL, { name, rooms, price, description })
+      .then(res => setApartments(prev => [...prev, res.data]))
+      .catch(error => console.error(error));
+  };
+
+  const onClickAddRent = ({ name, rooms, price, description, _id }) => {
     const alreadyAdded = currentRent.some(obj => obj.name === name);
     alreadyAdded
       ? Notify.failure(`Apartment ${name} has already rented`)
       : setCurrentRent(prev => [
-      ...prev,
-      { name, rooms, price, description },
-    ]);
+        ...prev,
+        { name, rooms, price, description, _id },
+      ]);
+  };
+
+  const onClickCancelRent = name => {
+    setCurrentRent(prev => prev.filter(apartment => apartment.name !== name));
+  };
+
+  const onClickAddForEdit = ({ name, rooms, price, description, _id }) => {
+    setEditAparts([{ name, rooms, price, description, _id }]);
+  };
+
+
+  const onClickCancelEdit = () => {
+    setEditAparts([]);
   };
 
   const handleChange = e => setFilter(e.target.value);
+  const handleSort = e => setSort(e.target.value);
 
-  const handleSort = e => {setSort(e.target.value);};
-
-  const deleteApartment = id => {
-    setApartments(prev => prev.filter(apartment => apartment.id !== id));
+  const onClickDeleteApartment = id => {
+    axios.delete(`${API_URL}/${id}`)
+      .then(res => {
+        setApartments(prev => prev.filter(apartment => apartment._id !== id));
+        setCurrentRent(prev => prev.filter(apartment => apartment._id !== id));
+        setEditAparts(prev => prev.filter(apartment => apartment._id !== id));
+      })
+      .catch(error => console.error(error));
   };
 
-  const deleteRent = name => {
-    setCurrentRent(prev => prev.filter(apartment => apartment.name !== name));
-  };
 
   return (
     <StyledApp>
       <h1>Apartment Marketplace</h1>
       <h2>😍 Create a new rent</h2>
-      <Form onSubmit={handleFormData} />
+      <Form onSubmit={onSubmitFormCreate} />
       <Current
         heading="⏳ Your current rent"
         items={currentRent}
-        canceler={deleteRent}
+        canceler={onClickCancelRent}
+      />
+      <Edit
+        items={editAparts}
+        canceler={onClickCancelEdit}
+        editor={onSubmitFormEdit}
       />
       <Filter
         value={filter}
@@ -87,10 +107,12 @@ export const App = () => {
         items={apartments}
         filter={filter}
         sort={sort}
-        deleter={deleteApartment}
-        renter={handleCurrentRent}
-
+        deleter={onClickDeleteApartment}
+        renter={onClickAddRent}
+        editor={onClickAddForEdit}
       />
     </StyledApp>
   );
 };
+
+
